@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateCompliments1643221634855 implements MigrationInterface {
 
@@ -33,7 +33,8 @@ export class CreateCompliments1643221634855 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()',
                     }
-                ], foreignKeys: [
+                ],
+                foreignKeys: [
                     {
                         name: 'FKUserSenderCompliments',
                         referencedTableName: 'users',

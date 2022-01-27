@@ -9,9 +9,14 @@ interface IComplimentRequest {
   message: string;
 }
 
-class CreateComplimentService{
-  async execute({ tag_id, user_sender, user_receiver, message }: IComplimentRequest){
-    const complimentRepositories = getCustomRepository(ComplimentsRepositories);
+class CreateComplimentService {
+  async execute({
+    tag_id,
+    user_sender,
+    user_receiver,
+    message,
+  }: IComplimentRequest) {
+    const complimentsRepositories = getCustomRepository(ComplimentsRepositories);
     const userRepositories = getCustomRepository(UsersRepositories);
 
     if (user_sender === user_receiver) {
@@ -20,21 +25,21 @@ class CreateComplimentService{
 
     const userReceiverExists = await userRepositories.findOne(user_receiver);
 
-    if(!userReceiverExists){
+    if (!userReceiverExists) {
       throw new Error('This user does not exist');
     }
 
-    const compliment = await complimentRepositories.create({
+    const compliment = complimentsRepositories.create({
       tag_id,
       user_receiver,
       user_sender,
       message,
     });
 
-    await complimentRepositories.save(compliment);
+    await complimentsRepositories.save(compliment);
 
     return compliment;
   }
-}
+};
 
 export { CreateComplimentService };

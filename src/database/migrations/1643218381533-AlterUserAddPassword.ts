@@ -1,19 +1,19 @@
-import {MigrationInterface, QueryRunner, TableColumn} from "typeorm";
+import {MigrationInterface, QueryRunner, TableColumn} from 'typeorm';
 
 export class AlterUserAddPassword1643218381533 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.addColumn(
-            "users",
+            'users',
             new TableColumn({
-                name: "password",
-                type: "varchar",
+                name: 'password',
+                type: 'varchar',
                 isNullable: true,
             })
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropColumn("users", "password");
+        await queryRunner.dropColumn('users', 'password');
     }
 };
